@@ -2,6 +2,7 @@
 
 I'm learning data science bootcamp. There are 10 sprints in this program.
 
+
 ## First part of the program
 - Intro to Data Science
 - Notion
@@ -9,6 +10,7 @@ I'm learning data science bootcamp. There are 10 sprints in this program.
 - SQL Database
 - R Programming
 - Data Transformation
+
 
 ## Second part
 - Buiding Website Portfolio
@@ -18,4 +20,5 @@ I'm learning data science bootcamp. There are 10 sprints in this program.
 - Essential Python programming for Data Analyst
 - Dashboard with Looker Studio
 
-  Contact: sripalakitboom@gmail.com
+
+Contact: sripalakitboom@gmail.com
