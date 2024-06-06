@@ -1,0 +1,66 @@
+---
+title: "Project_datavistual"
+author: "Saetapat Boom"
+date: "2024-01-26"
+output: html_document
+---
+
+# **Homework** 
+
+## Project for Data Visualisation
+
+ In this document, I will use <span style="color: red;">***Markdown***</span>  language and <span style="color: red;">***R with ggplot2***</span>.  
+ 
+> Dataset = **mpg**  
+> Library = **tidyverse** and **ggplot2**  
+> Syntax  = **ggplot** **geom** **theme** **labs** **facet** 
+
+## Processing Steps
+1. Descriptive Statistic
+2. Questions for Data Vistualisation
+
+### Step 1 
+I have to get the data to my wd environment. then, preview and summarise roughly.
+```{r,message=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(ggsci)
+data("mpg")
+head(mpg)
+```
+
+we have *234* popular models of cars which *15*  car manufacturers (which I do not mention) between year *1999 to 2008*. all of the car models were manufactured in 1999 and 2008 for 117 and 117 models respectively. for these information, I have summarise descriptive statistic to show some basic data roughly.  
+
+- Average city miles per gallon     - **16.9** mpg  
+- Average highway miles per gallon  - **23.4** mpg   
+
+### Step 2 - Questions 
+1. which is the best manufacturer in which has the highest cty in pickup class
+
+ In the pickup class, there are three car manufacturers - Dodge, Ford, and Toyota. the highest pickup in cty for 17 miles per gallon. Additionally, in the scatter plot chart, it will show that Toyota not only has the hight vty but in hwy also among the pickup class. see below
+ 
+ for the code line, I use the pipe operator to filter out the pickup class to execute and manage the data frame easily. Then, I use ggplot to create the scatter plot chart using geom_point. I aim to separate the chart into two years 1999 and 2008 to look for some different details and find that Doge tried to increase its car for cty and hwy.
+ 
+```{r,fig.width= 10, fig.height = 5}
+mpg_pickup <- mpg %>% filter(class == "pickup")
+ggplot(mpg_pickup, aes(cty,hwy, col = manufacturer)) +
+  geom_point(size = 7,alpha = 0.8) + 
+  facet_wrap(~year) + 
+  scale_color_manual( values = c("black","blue","red")) +
+  labs( title = "Relationship between cty and hwy by 1999 and 2008",
+        subtitle = "car manufacturer",
+        caption = "cty: city miles per gallon || 
+        hwy: highway miles per gallon")
+```
+
+2. class and type of drive train  
+
+  this graph shows the class of car classify by the type of drive train in which has three type - four, front and rear wheel.  
+    I find that the most car that used the four wheel drive will be a SUV class following by pickup. For front wheel drive, midsize and compact class are quite close to each other by 37 and 35 cars respectively. Exceptionally, 2 seater car only greared with rear wheel drive and minivan also has only front wheel drive
+
+```{r,fig.width= 10, fig.height = 5}
+ggplot(mpg, aes(,class,fill = drv)) + 
+  geom_bar(position = "dodge") + 
+  theme_minimal() +
+  scale_fill_jco()
+```
